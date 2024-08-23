@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("https://lobinho-server-side.onrender.com");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
