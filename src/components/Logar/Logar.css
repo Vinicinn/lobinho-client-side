@@ -1,0 +1,22 @@
+form {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px
+}
+.labelnick {
+    font-size: xx-large;
+}
+#nick {
+    width: 50vw;
+    height: 10vh;
+    font-size: xx-large;
+    text-align: center;
+}
+.entrar {
+    width: 20vw;
+    height: 5vh;
+}
