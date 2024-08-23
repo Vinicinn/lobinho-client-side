@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/lobinho-client-side/static/css/main.1aac44e9.css",
+    "main.js": "/lobinho-client-side/static/js/main.dd4da50b.js",
+    "static/js/453.adcaf5ed.chunk.js": "/lobinho-client-side/static/js/453.adcaf5ed.chunk.js",
+    "index.html": "/lobinho-client-side/index.html",
+    "main.1aac44e9.css.map": "/lobinho-client-side/static/css/main.1aac44e9.css.map",
+    "main.dd4da50b.js.map": "/lobinho-client-side/static/js/main.dd4da50b.js.map",
+    "453.adcaf5ed.chunk.js.map": "/lobinho-client-side/static/js/453.adcaf5ed.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1aac44e9.css",
+    "static/js/main.dd4da50b.js"
+  ]
+}
