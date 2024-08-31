@@ -1,0 +1,26 @@
+.sideBar {
+  width: 25vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid black;
+  align-items: center;
+  text-align: center;
+  overflow-y: auto;
+  padding-left: 10px;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+.closeHelpButton {
+  position: absolute;
+  align-self: self-end;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.functionsList {
+  list-style: none;
+  padding: 0;
+}
+.function {
+  border-top: 1px solid black;
+}
