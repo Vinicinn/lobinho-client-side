@@ -24,9 +24,13 @@ function Lobby({ socket }) {
     <>
       <div className="lobby">
         <h1 className="tituloLobby">Jogadores no lobby:</h1>
-        <h3>
-          jogadores prontos {prontos}/{jogadores.length}
-        </h3>
+        {jogadores.length < 4 ? (
+          <h3>é necessario no minimo 4 jogadores</h3>
+        ) : (
+          <h3>
+            jogadores prontos {prontos}/{jogadores.length}
+          </h3>
+        )}
         <ul>
           {jogadores.map((jogador) => (
             <li key={jogador.id}>{jogador.nome}</li>
