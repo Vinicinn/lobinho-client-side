@@ -3,11 +3,13 @@ import "./Ajuda.css";
 
 function Ajuda({ socket, onClose }) {
   const [funcoes, setFuncoes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     socket.emit("solicitarFuncoes");
     socket.on("receberFuncoes", (data) => {
       setFuncoes(data);
+      setLoading(false);
     });
   }, [socket]);
 
@@ -37,17 +39,21 @@ function Ajuda({ socket, onClose }) {
         <p>A equipe que sobreviver vence!</p>
         <p>O melhor jeito de aprender é jogando. Divirta-se!</p>
         <h3>Funções Ativas:</h3>
-        <ul className="functionsList">
-          {funcoes.map((funcao, index) => (
-            <li key={index} className="function">
-              <p>
-                <b> {funcao.nome}</b>
-              </p>
-              <p>{funcao.descricao}</p>
-              <p>Equipe: {funcao.equipe}</p>
-            </li>
-          ))}
-        </ul>
+        {loading ? (
+          <p>Carregando...</p>
+        ) : (
+          <ul className="functionsList">
+            {funcoes.map((funcao, index) => (
+              <li key={index} className="function">
+                <p>
+                  <b> {funcao.nome}</b>
+                </p>
+                <p>{funcao.descricao}</p>
+                <p>Equipe: {funcao.equipe}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );
