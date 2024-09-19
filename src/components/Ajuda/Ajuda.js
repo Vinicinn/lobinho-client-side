@@ -6,8 +6,8 @@ function Ajuda({ socket, onClose }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    socket.emit("solicitarFuncoes");
-    socket.on("receberFuncoes", (data) => {
+    socket.emit("funcoes");
+    socket.on("funcoes", (data) => {
       setFuncoes(data);
       setLoading(false);
     });

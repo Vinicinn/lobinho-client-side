@@ -7,8 +7,13 @@ function App({ socket }) {
   const [conectado, setConectado] = useState(false);
 
   const handleLogin = (nickValue) => {
-    socket.emit("novoJogador", nickValue);
-    setConectado(true);
+    socket.emit("entrar", nickValue, (response) => {
+      if (response.status === "ok") {
+        setConectado(true);
+      } else {
+        alert("nick ja em uso");
+      }
+    });
   };
 
   return (

@@ -5,6 +5,7 @@ function Lobby({ socket }) {
   let [jogadores, setJogadores] = useState([]);
   let [pronto, setPronto] = useState(false);
   let [prontos, setProntos] = useState(0);
+  let [contagem, setContagem] = useState(false);
 
   const alterarBotao = () => {
     setPronto(!pronto);
@@ -12,11 +13,11 @@ function Lobby({ socket }) {
   };
 
   useEffect(() => {
-    socket.on("atualizarJogadores", (novosJogadores) => {
+    socket.on("jogadores", (novosJogadores) => {
       setJogadores(novosJogadores);
     });
-    socket.on("jogadoresProntos", (jogadoresProntos) => {
-      setProntos(jogadoresProntos);
+    socket.on("prontos", (quantidadeProntos) => {
+      setProntos(quantidadeProntos);
     });
   }, [socket]);
 
@@ -33,10 +34,16 @@ function Lobby({ socket }) {
         )}
         <ul>
           {jogadores.map((jogador) => (
-            <li key={jogador.id}>{jogador.nome}</li>
+            <li key={jogador.id}>
+              {jogador.pronto ? `${jogador.nome} (pronto)` : jogador.nome}
+            </li>
           ))}
         </ul>
-        <button className="botaoPronto" onClick={alterarBotao}>
+        <button
+          className="botaoPronto"
+          onClick={alterarBotao}
+          disabled={jogadores.length < 4}
+        >
           {pronto ? "cancelar" : "pronto"}
         </button>
       </div>
