@@ -6,6 +6,7 @@ function Lobby({ socket }) {
   let [pronto, setPronto] = useState(false);
   let [prontos, setProntos] = useState(0);
   let [contagem, setContagem] = useState(false);
+  let [seconds, setSeconds] = useState(5);
 
   const alterarBotao = () => {
     setPronto(!pronto);
@@ -19,7 +20,21 @@ function Lobby({ socket }) {
     socket.on("prontos", (quantidadeProntos) => {
       setProntos(quantidadeProntos);
     });
-  }, [socket]);
+    socket.on("iniciarContagem", () => {
+      setContagem(true);
+    });
+    socket.on("pararContagem", () => {
+      setContagem(false);
+      setSeconds(5);
+    });
+    if (contagem && seconds > 0) {
+      let timer = setInterval(() => {
+        setSeconds((prev) => prev - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [socket, contagem, seconds]);
 
   return (
     <>
@@ -28,9 +43,15 @@ function Lobby({ socket }) {
         {jogadores.length < 4 ? (
           <h3>é necessario no minimo 4 jogadores</h3>
         ) : (
-          <h3>
-            jogadores prontos {prontos}/{jogadores.length}
-          </h3>
+          <>
+            {contagem ? (
+              <h3>iniciando em {seconds}...</h3>
+            ) : (
+              <h3>
+                jogadores prontos {prontos}/{jogadores.length}
+              </h3>
+            )}
+          </>
         )}
         <ul>
           {jogadores.map((jogador) => (
