@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/lobinho-client-side/static/css/main.24d921b6.css",
-    "main.js": "/lobinho-client-side/static/js/main.5316e78c.js",
-    "static/js/453.adcaf5ed.chunk.js": "/lobinho-client-side/static/js/453.adcaf5ed.chunk.js",
+    "main.css": "/lobinho-client-side/static/css/main.30ebaabe.css",
+    "main.js": "/lobinho-client-side/static/js/main.55f08de8.js",
     "index.html": "/lobinho-client-side/index.html",
-    "main.24d921b6.css.map": "/lobinho-client-side/static/css/main.24d921b6.css.map",
-    "main.5316e78c.js.map": "/lobinho-client-side/static/js/main.5316e78c.js.map",
-    "453.adcaf5ed.chunk.js.map": "/lobinho-client-side/static/js/453.adcaf5ed.chunk.js.map"
+    "main.30ebaabe.css.map": "/lobinho-client-side/static/css/main.30ebaabe.css.map",
+    "main.55f08de8.js.map": "/lobinho-client-side/static/js/main.55f08de8.js.map"
   },
   "entrypoints": [
-    "static/css/main.24d921b6.css",
-    "static/js/main.5316e78c.js"
+    "static/css/main.30ebaabe.css",
+    "static/js/main.55f08de8.js"
   ]
 }
