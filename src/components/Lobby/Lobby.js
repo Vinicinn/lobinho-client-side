@@ -1,7 +1,7 @@
 import "./Lobby.css";
 import { useEffect, useState } from "react";
 
-function Lobby({ socket }) {
+function Lobby({ socket, start }) {
   let [jogadores, setJogadores] = useState([]);
   let [pronto, setPronto] = useState(false);
   let [prontos, setProntos] = useState(0);
@@ -34,7 +34,10 @@ function Lobby({ socket }) {
 
       return () => clearInterval(timer);
     }
-  }, [socket, contagem, seconds]);
+    if (seconds === 0) {
+      start();
+    }
+  }, [socket, contagem, seconds, start]);
 
   return (
     <>
@@ -63,7 +66,7 @@ function Lobby({ socket }) {
         <button
           className="botaoPronto"
           onClick={alterarBotao}
-          disabled={jogadores.length < 4}
+          // disabled={jogadores.length < 4}
         >
           {pronto ? "cancelar" : "pronto"}
         </button>
