@@ -5,10 +5,15 @@ function Game({ socket }) {
   const [noite, setNoite] = useState(1);
   const [seconds, setSeconds] = useState(5);
   const [state, setState] = useState("noite");
-  const [funcao, setFuncao] = useState([]);
+  const [funcao, setFuncao] = useState({});
+  const [nomes, setNomes] = useState([]);
 
   useEffect(() => {
     socket.emit("carreguei");
+    setNoite(1);
+    socket.on("receberNomes", (data) => {
+      setNomes(data);
+    });
   }, [socket]);
 
   useEffect(() => {
@@ -20,11 +25,11 @@ function Game({ socket }) {
       return () => clearInterval(timer);
     }
     if (seconds === 0) {
-      setState("funcao");
       socket.emit("esperandoFuncao");
       socket.on("receberFuncao", (data) => {
         setFuncao(data);
-        console.log(data);
+        setState("funcao");
+        socket.emit("esperandoNomes");
       });
     }
   }, [seconds, socket]);
@@ -44,7 +49,26 @@ function Game({ socket }) {
               </>
             );
           case "funcao":
-            return <p>{funcao.nome}</p>;
+            return (
+              <>
+                <h2>{funcao.nome}</h2>
+                <p>{funcao.descricao}</p>
+                {funcao.seleciona && (
+                  <ul>
+                    {nomes.map((nome) => (
+                      <li key={nome}>{nome}</li>
+                    ))}
+                  </ul>
+                )}
+                {funcao.acoes.length > 0 ? (
+                  funcao.acoes.map((acao) => {
+                    return <button>{acao}</button>;
+                  })
+                ) : (
+                  <button>OK</button>
+                )}
+              </>
+            );
           default:
             break;
         }
